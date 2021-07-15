@@ -1,0 +1,15 @@
+on:
+  push:
+    tags:
+      - 'v*'
+env:
+  IMAGE: "ghcr.io/${{github.repository}}"
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@master
+      - run: echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u ${{github.actor}} --password-stdin
+      - run: echo "TAG=${GITHUB_REF#refs/*/}" >>$GITHUB_ENV
+      - run: docker build -t ${IMAGE}:${TAG} .
+      - run: docker push ${IMAGE}:${TAG}
