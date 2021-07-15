@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 60s
+
+scrape_configs:
+  - job_name: 'uls'
+    static_configs:
+      - targets:
+        - uls-exporter:9101
