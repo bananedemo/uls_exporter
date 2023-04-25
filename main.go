@@ -18,7 +18,7 @@ import (
 
 type TimeUTC time.Time
 
-const TimeUTCFormat = "2006-01-02T15:04:05.999999"
+const TimeUTCFormat = "2006-01-02T15:04:05.999999Z07:00"
 
 func (t TimeUTC) UnmarshalJSON(b []byte) error {
 	var s string
